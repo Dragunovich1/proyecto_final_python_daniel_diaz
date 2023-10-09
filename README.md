@@ -8,7 +8,7 @@
 
 ## Descripción de la distribucion de tareas
 
-Se decidió utilizar dos aplicaciones para el proyecto. Una para controlar la lógica de las vistas, otra para manejar la autenticación de usuarios
+Se decidió utilizar dos aplicaciones para el proyecto. Una para controlar la lógica de las vistas, otra para manejar la autenticación de usuarios,
 hemos distribuido equitativamente las tareas, reuniendonos casi periodicamente por Microsoft Teams para el desarrollo.
 
 

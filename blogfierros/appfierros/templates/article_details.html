@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{post.titulo_tag}} {% endblock %}
+{% block content %}
+
+
+<h1>{{ post.titulo }}</h1>
+<small>Por: {{ post.autor.first_name }} {{ post.autor.last_name}} - {{ post.post_date }} - {{ post.post_time }} 
+	{% if user.is_authenticated %}
+		{% if user.id == post.autor.id %}
+			- <a href="{% url 'update_post' post.pk %}">(Editar Post)</a>
+			<a href="{% url 'delete_post' post.pk %}">(Borrar Post)</a>
+		{% endif %}
+	{% endif %}
+</small>
+</br>
+<hr>
+</br>
+{% if post.header_image %}
+<img src="{{ post.header_image.url }}" class="rounded"></br></br>
+{% endif %}
+{{ post.body|safe }}
+<hr>
+<form action="{% url 'like_post' post.pk %}" method="POST">
+	{% csrf_token %}
+	{% if user.is_authenticated %}
+		{% if liked %}
+			<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">	Ya no me gusta!
+			</button>
+		{% else %}
+			<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">	Me gusta!
+			</button>
+		{% endif %}
+		- {{ total_likes }} Likes
+	{% else %}
+		<div class="alert alert-warning" role="alert">
+  			<a href="{% url 'login' %}">Inicia sesión</a> para poner me gusta o ver los likes...
+		</div>
+	{% endif %}
+</form>
+<br/>
+<div class="card mb-3">
+  <div class="row no-4">
+    <div class="col-md-2">
+{% if post.autor.profile.profile_pic %}
+      <img src="{{ post.autor.profile.profile_pic.url }}" class="card-img">
+{% else %}
+			<img src="{% static 'appfierros/images/default.png'%}" class="card-img">
+{% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.autor.first_name }} {{ post.autor.last_name}}</h5>
+        <p class="small text-muted">
+        	{% if post.autor.profile.id %}
+        	<a href="{% url 'show_profile_page' post.autor.profile.id %}">Ver perfil</a> |
+        	{% endif %}
+
+        	{% if post.autor.profile.github_url %}
+	        	<a href="{{ post.autor.profile.github_url }}" target="_blank">Github</a> |
+	        {% endif %}
+
+	        {% if post.autor.profile.linkedin_url %}
+	        	<a href="{{ post.autor.profile.linkedin_url }}" target="_blank">Linkedin</a> |
+	        {% endif %}
+
+	        {% if post.autor.profile.facebook_url %}
+	        	<a href="{{ post.autor.profile.facebook_url }}" target="_blank">Facebook</a> |
+	        {% endif %}
+
+	        {% if post.autor.profile.instagram_url %} 
+	        	<a href="{{ post.autor.profile.instagram_url }}" target="_blank">Instagram</a> |
+	        {% endif %}
+	        
+	        {% if post.autor.profile.twitter_url %}	 
+	        	<a href="{{ post.autor.profile.twitter_url }}" target="_blank">Twitter</a>
+	        {% endif %}
+     	</p>
+        <p class="card-text">{{ post.autor.profile.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<h2> Comentarios: </h2>
+<br/>
+	{% if user.is_authenticated %}
+		{% if not post.comments.all %}
+			No hay comentarios todavia... <a href="{% url 'add_comment' post.pk %}">se el primero :)</a>
+		{% else %}
+			<a href="{% url 'add_comment' post.pk %}">Deja un comentario</a>
+			<br/><br/>
+		{% endif %}
+	{% else %}
+			<div class="alert alert-warning" role="alert">
+  			Solo los usuarios registrados pueden comentar registrate <a href="{% url 'register' %}">aqui </a>
+			</div>
+			<br/>
+	{% endif %}
+			{% for comment in post.comments.all %}
+				<strong>
+					{{ comment.name }} -
+					{{ comment.comment_date }} - 
+					{{ comment.comment_time }}
+				</strong>
+						{% if user.id == comment.name.id %}
+							<small><a href="{% url 'edit_comment' comment.pk %}">(Editar)</a> <a href="{% url 'delete_comment' comment.pk %}">(Borrar)</a></small>
+						{% endif %}
+				<br/>
+				{{ comment.body }}
+				<br/><br/>
+			{% endfor %}	
+<hr>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+<br/>
+<br/>
+
+{% endblock %}

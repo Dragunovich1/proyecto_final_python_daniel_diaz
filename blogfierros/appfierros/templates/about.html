@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Acerca de nosotros {% endblock %}
+
+{% block content %}
+  
+    <title>Acerca de nosotros - BlogFierros.com</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container text-center">
+  <!-- Limita el ancho del contenido principal -->
+  <div class="card text-center" style="max-width: 800px; margin: 0 auto;">
+    <div class="card-header">
+      <strong>Acerca de Nosotros - BlogFierros.com</strong>
+    </div>
+      <!-- Contenedor de imágenes circulares -->
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <div class="rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; background-color: #f0f0f0;">
+        <!-- Inserta aquí la primera imagen -->
+        <img src="{% static 'appfierros/images/daniel.png' %}" alt="Imagen 1" width="150" height="150" class="rounded-circle">
+      </div>
+      <strong><p>Daniel Díaz</p></strong>
+    </div>
+    <div class="col-md-6">
+      <div class="rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; background-color: #f0f0f0;">
+        <!-- Inserta aquí la segunda imagen -->
+        <img src="{% static 'appfierros/images/andres.jpg' %}" alt="Imagen 2" width="150" height="150" class="rounded-circle">
+      </div>
+      <strong><p>Andrés Vallejos</p></strong>
+    </div>
+  </div>
+
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <p>Somos dos amigos apasionados por los autos clásicos, y este blog es nuestra forma de mantener viva la llama de esta pasión. Nos dedicamos a explorar y compartir historias fascinantes sobre los autos clásicos que amamos.</p>
+
+        <p>Nuestro objetivo es celebrar la belleza atemporal y la elegancia de estos vehículos icónicos. A través de nuestras publicaciones, te invitamos a unirte a nosotros en un viaje emocionante a través de la historia del automovilismo clásico.</p>
+
+        <p>Gracias por visitar nuestro blog y ser parte de nuestra comunidad de amantes de los autos clásicos. ¡Esperamos que disfrutes de este viaje tanto como nosotros!</p>
+
+        <p>Con pasión por los clásicos,</p>
+        <p>Daniel Díaz y Andrés Vallejos</p>
+        <p>Creadores y administradores de <a href="{% url 'home' %}">BlogFierros.com</a></p>
+      </p>
+	  <br/>
+      <a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+	  <br/>
+    </div>
+    <div class="card-footer text-body-secondary">
+    </div>
+  </div>
+</div>
+{% endblock %}

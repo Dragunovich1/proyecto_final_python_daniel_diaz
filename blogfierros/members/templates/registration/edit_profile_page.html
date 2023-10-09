@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Editar pagina de perfil {% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+	{% if user.id == profile.user.id %}
+		<div class="alert alert-warning" role="alert">
+		  Vas a editar tu pagina de perfil...
+		</div>
+			<br/><br/>
+
+			<div class="achicar">
+				<div class="form-group">
+					<form method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<button class="btn btn-secondary">Actualizar perfil</button>
+					</form>
+				</div>
+			</div>
+  {% else %}
+		<div class="alert alert-danger" role="alert">
+	  		No eres el usuario correcto para editar este perfil...
+		</div>
+	{% endif %}	
+{% else %}
+	<div class="alert alert-warning" role="alert">
+  		Solo los usuarios registrados pueden acceder aqui...
+	</div>
+{% endif %}
+
+{% endblock %}

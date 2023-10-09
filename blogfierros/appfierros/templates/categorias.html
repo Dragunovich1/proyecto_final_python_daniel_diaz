@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if categoria_posts %}
+
+<h1>Categoria: {{ cats }}</h1>
+<br/>
+<ul>
+{% for post in categoria_posts %}
+	<li>
+		<a href="{% url 'article-detail' post.pk %}">{{post.titulo}}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{ post.post_date }} - {{ post.post_time }} 
+		<small>
+			{% if user.is_authenticated %}
+				{% if user.id == post.autor.id %}
+					- <a href="{% url 'update_post' post.pk %}">(Editar Post)</a>
+					<a href="{% url 'delete_post' post.pk %}">(Borrar Post)</a>
+				{% endif %}
+			{% endif %}	
+		</small>
+		<br/>
+		{{post.body|safe}}
+	</li>
+	<br/>
+{% endfor %}
+</ul>
+
+{% else %}
+	<div class="alert alert-warning" role="alert">
+  		No hay posts en esta categoría...
+	</div>
+{% endif %}
+
+{% endblock %}

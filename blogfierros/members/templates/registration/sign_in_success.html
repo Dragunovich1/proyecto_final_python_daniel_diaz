@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Creacion de usuario {% endblock %}
+
+{% block content %}
+
+
+<div class="alert alert-success" role="alert">
+  El Usuario ha sido creado exitosamente!, para crear su perfil ingrese <a href="{% url 'create_user_profile_page' %}"> aqui...</a>
+</div>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+
+{% endblock %}

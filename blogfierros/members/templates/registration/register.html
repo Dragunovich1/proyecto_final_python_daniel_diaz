@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Registrarse {% endblock %}
+
+{% block content %}
+
+
+<h1>Registrarse...</h1>
+<hr>
+<br/>
+	<div class="achicar">
+		<div class="form-group">
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-secondary">Registrarse</button>
+				<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

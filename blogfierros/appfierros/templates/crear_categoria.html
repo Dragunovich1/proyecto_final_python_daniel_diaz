@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Crear una nueva categoría {% endblock %}
+{% block content %}
+
+
+	{% if user.is_authenticated %}
+		{% if user.is_superuser or user.is_staff %}
+			<h1>Crear Categoría</h1>
+			<br/><br/>
+
+			<div class="achicar">
+				<div class="form-group">
+					<form method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ form.media }}
+						{{ form.as_p }}
+						<br>
+						<button class="btn btn-secondary">Confirmar</button>
+						<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+					</form>
+				</div>
+			</div>
+
+			<script>
+				var nombre = "{{ user.id }}";
+				
+				document.getElementById("default").value = nombre;
+
+			</script>
+
+		{% else %}
+			<div class="alert alert-warning" role="alert">
+		  		No tienes permisos para crear categorias...
+			</div>
+		{% endif %}	
+
+
+	{% else %}
+	<div class="alert alert-warning" role="alert">
+  		Solo los usuarios registrados pueden acceder aqui...
+	</div>
+{% endif %}
+
+{% endblock %}

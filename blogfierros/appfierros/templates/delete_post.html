@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Borrar Post... {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+		{% if user.is_superuser or user.is_staff %}
+			{% if user.id == post.autor.id %}
+				<br/>
+				<div class="form-group">
+					<form method="POST">
+						{% csrf_token %}
+							<div class="alert alert-danger" role="alert">
+		  						Esta seguro que desea borrar el Post {{ post.titulo }}?
+							</div>
+							<br/>
+						<button class="btn btn-secondary">Borrar post</button>
+						<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+					</form>
+				</div>
+			{% endif %}
+		{% else %}
+				<div class="alert alert-warning" role="alert">
+  					No tienes permiso para borrar posts...
+				</div>
+		{% endif %}
+{% else %}
+	<div class="alert alert-warning" role="alert">
+  		Solo los usuarios registrados pueden acceder aqui...
+	</div>
+{% endif %}
+{% endblock %}

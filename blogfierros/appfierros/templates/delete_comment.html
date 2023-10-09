@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Borrar comentario {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+	{% if user.id == comment.name.id %}
+		<br/>
+		<div class="form-group">
+			<form method="POST">
+				{% csrf_token %}
+					<div class="alert alert-danger" role="alert">
+  						Esta seguro que desea borrar el comentario?
+					</div>
+					<br/>
+				<button class="btn btn-secondary">Borrar comentario</button>
+				<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+			</form>
+		</div>
+	{% else %}
+			<div class="alert alert-danger" role="alert">
+		  		Estas logueado con un usuario diferente al creador del comentario...
+			</div>
+	{% endif %}
+{% else %}
+	<div class="alert alert-warning" role="alert">
+  		Solo los usuarios registrados pueden acceder aqui...
+	</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Perfil de usuario:</h1>
+<hr>
+<br/>
+<div class="alert alert-primary" role="alert">
+  Perfil de {{ page_user }}:
+</div>
+<br/>
+<div class="card mb-3">
+  <div class="row no-4">
+    <div class="col-md-2">
+{% if page_user.profile_pic %}
+      <img src="{{ page_user.profile_pic.url }}" class="card-img">
+{% else %}
+			<img src="{% static 'appfierros/images/default.png'%}" class="card-img">
+{% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name}} | 
+        	{% if page_user.user.is_superuser %}
+        		Superusuario: Si
+        	{% else %}
+        		Superusuario: No
+        	{% endif %}
+        		{% if page_user.user.is_staff %}
+		        	| Staff: Si 
+		        {% else %}
+		        	| Staff: No
+		        {% endif%} 
+		      </h5>
+
+        <p class="small text-muted">
+        	{% if page_user.github_url %}
+	        	<a href="{{ page_user.github_url }}" target="_blank">Github</a> |
+	        {% endif %}
+
+	        {% if page_user.linkedin_url %}
+	        	<a href="{{ page_user.linkedin_url }}" target="_blank">Linkedin</a> |
+	        {% endif %}
+
+	        {% if page_user.facebook_url %}
+	        	<a href="{{ page_user.facebook_url }}" target="_blank">Facebook</a> |
+	        {% endif %}
+
+	        {% if page_user.instagram_url %} 
+	        	<a href="{{ page_user.instagram_url }}" target="_blank">Instagram</a> |
+	        {% endif %}
+	        
+	        {% if page_user.twitter_url %}	 
+	        	<a href="{{ page_user.twitter_url }}" target="_blank">Twitter</a>
+	        {% endif %}
+     	</p>
+        <p class="card-text">{{ page_user.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+
+{% endblock %}

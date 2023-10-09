@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h1>Posts Recientes:</h1>
+	<hr>
+	<br/>
+	<ul>
+		{% if object_list %}
+			{% for post in object_list %}
+				<li>
+					<a href="{% url 'article-detail' post.pk %}">{{post.titulo}}</a> -
+					<a href="{% url 'categoria' post.categoria|slugify %}">{{ post.categoria }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{ post.post_date }} - {{ post.post_time }} 
+					<small>
+						{% if user.is_authenticated %}
+							{% if user.id == post.autor.id %}
+								- <a href="{% url 'update_post' post.pk %}">(Editar Post)</a>
+								<a href="{% url 'delete_post' post.pk %}">(Borrar Post)</a>
+							{% endif %}
+						{% endif %}
+					</small>
+					<br/>
+					{{post.body|slice:":200"|safe}}
+						{% if post.body|length > 200 %}
+                 <a href="{% url 'article-detail' post.pk %}"> ..Leer más</a>
+            {% else %}
+                  <p>Para leer el post completo, haz clic en el enlace de arriba.</p>
+            {% endif %}
+				</li>
+				<br/>
+			{% endfor%}
+		{%else%}
+						<div class="alert alert-warning" role="alert">
+					  Aun no se han creado posts...
+					</div>
+		{% endif %}
+			</ul>
+
+	<div class="container">
+	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+	    <p class="col-md-4 mb-0 text-muted">&copy; 2023 Daniel Diaz - Andres Vallejos</p>
+
+	    <p class="col-md-4 mb-0 text-muted">Proyecto Final Coderhouse Python - 43880</p>
+
+	    <ul class="nav col-md-4 justify-content-end">
+
+	      <li class="nav-item"><a href="https://drive.google.com/file/d/10RJSfL0Lo7CD8dOMAFxf3RclnRIU2jSh/view?usp=drive_link" class="nav-link px-2 text-muted">Video Explicativo</a></li>
+	      <li>
+	  		 <a href="#" class="nav-link px-2 text-muted">|</a>
+	      </li>
+	      <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">Acerca de nosotros</a></li>
+	    </ul>
+	  </footer>
+	</div>
+{% endblock %}

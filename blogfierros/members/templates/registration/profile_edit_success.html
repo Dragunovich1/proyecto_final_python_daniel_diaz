@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Información personal actualizada {% endblock %}
+
+{% block content %}
+
+
+<div class="alert alert-success" role="alert">
+  Tu información personal se actualizó correctamente!
+</div>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+
+{% endblock %}

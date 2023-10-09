@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Categoria creada exitosamente {% endblock %}
+
+{% block content %}
+
+
+<div class="alert alert-success" role="alert">
+  La categoria fue creada exitosamente!
+</div>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+
+{% endblock %}

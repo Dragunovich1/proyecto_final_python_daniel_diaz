@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Editar comentario {% endblock %}
+{% block content %}
+	{% if user.is_authenticated %}
+		{% if user.id == comment.name.id %}
+			<h1>Editar comentario...</h1>
+			<hr>
+			<br/>
+
+			<div class="achicar">
+				<div class="form-group">
+					<form method="POST">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<button class="btn btn-secondary">Confirmar</button>
+						<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+					</form>
+				</div>
+			</div>
+		{% else %}
+			<div class="alert alert-danger" role="alert">
+		  		Estas logueado con un usuario diferente al creador del comentario...
+			</div>
+		{% endif %}
+	{% else %}
+			<div class="alert alert-warning" role="alert">
+		  		Solo los usuarios registrados pueden acceder aqui...
+			</div>
+	{% endif %}
+	
+{% endblock %}

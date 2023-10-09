@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Buscar Posts:</h1>
+<hr>
+<br/>
+<form method="POST">
+	{% csrf_token %}
+
+	<input type="input" class="form-control" placeholder="Buscar posts" name="search" required>
+	<br/><br/>
+	<button type="submit" class="btn btn-secondary">Buscar</button>
+	<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+</form>
+<br/><br/>
+	{% if search %}
+		{% if searched %}
+				<h3>Buscaste: {{ search }}</h3>
+			<hr>
+			<br/>
+
+			{% for post in searched %}
+					<li>
+					<a href="{% url 'article-detail' post.pk %}">{{post.titulo}}</a> -
+					<a href="{% url 'categoria' post.categoria|slugify %}">{{ post.categoria }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{ post.post_date }} - {{ post.post_time }} 
+					<small>
+						{% if user.is_authenticated %}
+							{% if user.id == post.autor.id %}
+								- <a href="{% url 'update_post' post.pk %}">(Editar Post)</a>
+								<a href="{% url 'delete_post' post.pk %}">(Borrar Post)</a>
+							{% endif %}
+							{% endif %}
+						</small>
+						<br/>
+						{{post.body|safe}}
+					</li>
+					<br/>
+				{% endfor %}
+		{% else %}
+
+		{% if searched == None %}
+
+				{%else%}
+				<div class="alert alert-warning" role="alert">
+				  Tu busqueda no arrojó resultados :(
+				</div>
+				{%endif%}
+		{% endif %}
+	{% endif %}
+{% endblock %}

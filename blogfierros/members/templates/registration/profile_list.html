@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Nuestra comunidad:</h1>
+<hr>
+<br/>
+
+{% if profiles %}
+	{% for profile in profiles %}
+<div class="card mb-3">
+  <div class="row no-4">
+    <div class="col-md-2">
+{% if profile.profile_pic %}
+      <img src="{{ profile.profile_pic.url }}" class="card-img">
+{% else %}
+      <img src="{% static 'appfierros/images/default.png'%}" class="card-img">
+{% endif %}
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name}}         <p class="card-text"><small class="text-body-secondary">Ultima modificacion: {{ profile.date_modified }}</small></h5>
+          <p class="small text-muted">
+            {% if profile.github_url %}
+              <a href="{{ profile.github_url }}" target="_blank">Github</a> |
+            {% endif %}
+
+            {% if profile.linkedin_url %}
+              <a href="{{ profile.linkedin_url }}" target="_blank">Linkedin</a> |
+            {% endif %}
+
+            {% if profile.facebook_url %}
+              <a href="{{ profile.facebook_url }}" target="_blank">Facebook</a> |
+            {% endif %}
+
+            {% if profile.instagram_url %} 
+              <a href="{{ profile.instagram_url }}" target="_blank">Instagram</a> |
+            {% endif %}
+            
+            {% if profile.twitter_url %}   
+              <a href="{{ profile.twitter_url }}" target="_blank">Twitter</a>
+            {% endif %}
+      </p>
+        <p class="card-text">{{ profile.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+	{% endfor %}
+
+{% endif %}
+<br/>
+<hr>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+<br/>
+{% endblock %}

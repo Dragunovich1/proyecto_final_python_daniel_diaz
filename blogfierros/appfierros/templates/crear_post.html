@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} Crear un nuevo post {% endblock %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		{% if user.is_superuser or user.is_staff %}
+				<h1>Crear Post...</h1>
+				<br/><br/>
+
+				<div class="achicar">
+					<div class="form-group">
+						<form method="POST" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ form.media }}
+							{{ form.as_p }}
+							<button class="btn btn-secondary">Postear</button>
+							<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
+						</form>
+					</div>
+				</div>
+
+				<script>
+					var nombre = "{{ user.id }}";
+					
+					document.getElementById("default").value = nombre;
+
+				</script>
+		{% else %}
+		<div class="alert alert-warning" role="alert">
+	  		No tienes permiso para crear posts...
+		</div>
+		{% endif %}
+	{% else %}
+		<div class="alert alert-warning" role="alert">
+	  		No tienes permiso para crear posts...
+		</div>
+	{% endif %}
+{% endblock %}

@@ -18,6 +18,11 @@
 						{% endif %}
 					</small>
 					<br/>
+					<br/>
+					{% if post.header_image %}
+					<img src="{{ post.header_image.url }}" class="rounded" class="img-thumbnail"></br></br>
+					{% endif %}
+					<br/>
 					{{post.body|slice:":200"|safe}}
 						{% if post.body|length > 200 %}
                  <a href="{% url 'article-detail' post.pk %}"> ..Leer más</a>

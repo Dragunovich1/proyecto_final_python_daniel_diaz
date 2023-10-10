@@ -64,3 +64,17 @@ https://drive.google.com/file/d/10RJSfL0Lo7CD8dOMAFxf3RclnRIU2jSh/view?usp=drive
 8. Ejecuta el servidor con el comando: python manage.py runserver.
 
 9. Abre un navegador y navega hasta http://127.0.0.1:8000/ o http://localhost:8000/ para ver la página principal.
+
+##Vistas de cada tipo de usuario:
+
+1. Vista de la pagina sin usuario logueado:
+    https://drive.google.com/file/d/1vAKIIt2ykpm2_xAndk4UMChGua92DKZ1/view?usp=drive_link
+
+2. Vista de la pagina con usuario regular:
+	https://drive.google.com/file/d/18ksLfUynFu--gO2Eoc_87FZwUqfMjeNT/view?usp=drive_link
+	
+3. Vista de usuario staff:
+	https://drive.google.com/file/d/1o3C3l1c44zODjWtPr51ibu0POrKwByTC/view?usp=drive_link
+
+4. Vista superuser:
+	https://drive.google.com/file/d/11RIcKPUSTGXSgxoHXvwYTqavH-0_kT-8/view?usp=drive_link

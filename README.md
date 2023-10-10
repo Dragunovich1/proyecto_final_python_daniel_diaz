@@ -37,6 +37,10 @@ Requisitos base:
 - Superusuario: dragunovich1 - password: DNDefault123
 - Usuario staff: elmanquito86 - password: DNDefault123
 
+##link del vídeo explicativo:
+
+https://drive.google.com/file/d/10RJSfL0Lo7CD8dOMAFxf3RclnRIU2jSh/view?usp=drivesdk
+
 ##Instrucciones:
 
 1. Clonar repo en tu máquina local.

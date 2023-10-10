@@ -8,7 +8,7 @@
 
 ## Descripción de la distribucion de tareas
 
-Se decidió utilizar dos aplicaciones para el proyecto. Una para controlar la lógica de las vistas, otra para manejar la autenticación de usuarios
+Se decidió utilizar dos aplicaciones para el proyecto. Una para controlar la lógica de las vistas, otra para manejar la autenticación de usuarios,
 hemos distribuido equitativamente las tareas, reuniendonos casi periodicamente por Microsoft Teams para el desarrollo.
 
 
@@ -37,6 +37,10 @@ Requisitos base:
 - Superusuario: dragunovich1 - password: DNDefault123
 - Usuario staff: elmanquito86 - password: DNDefault123
 
+##link del vídeo explicativo:
+
+https://drive.google.com/file/d/10RJSfL0Lo7CD8dOMAFxf3RclnRIU2jSh/view?usp=drivesdk
+
 ##Instrucciones:
 
 1. Clonar repo en tu máquina local.
@@ -60,92 +64,3 @@ Requisitos base:
 8. Ejecuta el servidor con el comando: python manage.py runserver.
 
 9. Abre un navegador y navega hasta http://127.0.0.1:8000/ o http://localhost:8000/ para ver la página principal.
-
-
-## Estructura de archivos del proyecto
-
-
-< RAIZ DEL PROYECTO (Blogfierros) >
-|
-|
-|-- db.sqlite3							#Base de datos.
-|
-|-- README.md							#Documentacion del proyecto (este archivo jeje).
-|
-|-- manage.py							#Archivo de administracion del proyecto.
-|
-|
-|
-|-- static/appfierros								
-|		|		
-|		|
-|		|--- css/					
-|		|
-|		|--- images/					#Directorio donde se encuentran las imagenes STATIC (utilizadas por ejemplo en el favicon).
-|		|
-|		|--- js/					
-|
-|
-|-- appfierros							#Implementa la logica de la app.
-|		|
-|		|--- templates/					#Directorio donde se encuentran todas las vistas HTML.
-|		|
-|		|--- migrations/				#Directorio de las migraciones de la DB.
-|		|
-|		|--- admin.py					#Archivo donde activamos las funcionalidades que se manejaran desde el panel de control.
-|		|
-|		|--- apps.py
-|		|
-|		|--- forms.py					#Define los formularios para la app.
-|		|
-|		|--- models.py					#Define los modelos para la app.
-|		|
-|		|--- tests.py					
-|		|
-|		|--- urls.py					#Define las urls para el ruteo.
-|		|
-|		|--- views.py					#Define las vistas para la app.
-|
-|
-|
-|
-|-- blogfierros/
-|			|						
-|			|
-|			|--- settings.py        #app django bootstrapper.
-|			|
-|			|--- urls.py			#archivo para las urls del proyecto base, fue necesario incluir la vista PasswordsChangeView aqui.
-|
-|
-|
-|--  media/							#Directorio definido para el almacenamiento de imagenes de perfil y las publicadas en los posts.
-|		|
-|		|
-|		|--- images/
-|				|
-|				|
-|				|--- profile/
-|				
-|
-|
-|-- members/						#Directorio definido para el manejo de la autenticacion, logueo y manejo de usuarios y perfiles.
-|		|
-|		|
-|		|--- migrations/			#Directorio de las migraciones de la DB
-|		|
-|		|
-|		|--- templates/				#Directorio donde se almacenan las vistas HTML relacionadas al manejo de usuarios.
-|		|
-|		|--- admin.py				#Archivo donde activamos las funcionalidades que se manejaran desde el panel de control.
-|		|
-|		|--- apps.py
-|		|
-|		|--- forms.py				#Define los formularios para la app de autenticacion.
-|		|
-|		|--- models.py				#Define los modelos para la app de autenticacion.
-|		|
-|		|--- tests.py					
-|		|
-|		|--- urls.py				#Define las urls para el ruteo orientado a la autenticacion
-|		|
-|		|--- views.py				#Define las vistas para la app orientado a la autenticacion
